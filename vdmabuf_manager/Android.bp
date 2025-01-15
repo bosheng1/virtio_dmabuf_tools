@@ -1,0 +1,49 @@
+cc_binary {
+    name: "vdmabuf_manager",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    srcs: [
+	"vdmabuf_manager.c",
+	"vdmabuf_common.c",
+	"vdmabuf_ioctl.c",
+    ],
+    vendor: true,
+}
+
+cc_library_shared {
+    name: "libvdmabuf_client",
+    vendor: true,
+    srcs: [
+        "vdmabuf_client.c",
+        "vdmabuf_common.c",
+    ],
+}
+
+cc_binary {
+    name: "vdmabuf_client_test_producer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    shared_libs: ["libvdmabuf_client"],
+    srcs: [
+        "client_test_producer.c",
+    ],
+    vendor: true,
+}
+
+cc_binary {
+    name: "vdmabuf_client_test_consumer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    shared_libs: ["libvdmabuf_client"],
+    srcs: [
+        "client_test_consumer.c",
+    ],
+    vendor: true,
+}

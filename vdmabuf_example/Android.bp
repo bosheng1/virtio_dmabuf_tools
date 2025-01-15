@@ -1,0 +1,25 @@
+cc_binary {
+    name: "vdmabuf_unit_test_producer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    srcs: [
+        "test_vdmabuf_producer.c",
+    ],
+    vendor: true,
+}
+
+cc_binary {
+    name: "vdmabuf_unit_test_consumer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    srcs: [
+        "test_vdmabuf_consumer.c",
+    ],
+    vendor: true,
+}
