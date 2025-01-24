@@ -21,6 +21,9 @@ void log_print(bool debug, FILE *stream, char *fmt, ...);
 #define ERROR(FMT, ...) \
         log_print(false, stderr, "ERROR: " FMT, ##__VA_ARGS__)
 
+#define DUMP(FMT, ...) \
+        log_print(true, stdout, "" FMT, ##__VA_ARGS__)
+
 int send_command(int socket, void *header, int header_len, void *data, int data_len, int fd);
 int recv_resp(int socket, struct vdmabuf_resp_hdr *hdr, void *data_out, int data_len, int *fd_out);
 

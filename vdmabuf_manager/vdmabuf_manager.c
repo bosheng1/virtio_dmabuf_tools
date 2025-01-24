@@ -280,11 +280,12 @@ static int device_read(void *ptr) {
 		}
 		memcpy(&hdr, msg + j, sizeof(hdr));
 		memcpy(bufid, &hdr.buf_id, sizeof(bufid));
-		DEBUG("vdmabuf: recv device event, build id: ");
+		DEBUG("vdmabuf: recv device event, build id: \n");
 		for (i = 0; i < 16; i++) {
-			DEBUG("%u ",  bufid[i]);
+			DUMP("%u ",  bufid[i]);
 		}
-		DEBUG("\n  priv size:%d\n", hdr.size);
+		DUMP("\n");
+		DEBUG("priv size:%d\n", hdr.size);
 		j = j + sizeof(hdr) +  hdr.size;
 
 	}
