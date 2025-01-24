@@ -8,3 +8,4 @@ add_definitions(" -g")
 
 add_executable(vdmabuf_unit_test_consumer test_vdmabuf_consumer.c)
 add_executable(vdmabuf_unit_test_producer test_vdmabuf_producer.c)
+install(TARGETS vdmabuf_unit_test_consumer vdmabuf_unit_test_producer DESTINATION bin)

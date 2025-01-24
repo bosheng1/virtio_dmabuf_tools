@@ -20,4 +20,6 @@ add_executable(vdmabuf_manager ${VDMABUF_MANAGER_SRC})
 add_executable(vdmabuf_client_test_producer ${VDMABUF_CLIENT_LIB_SRC} client_test_producer.c)
 add_executable(vdmabuf_client_test_consumer ${VDMABUF_CLIENT_LIB_SRC} client_test_consumer.c)
 
+install(TARGETS vdmabuf_manager vdmabuf_client_test_producer vdmabuf_client_test_consumer DESTINATION bin)
+install(TARGETS vdmabuf_client DESTINATION lib64)
 add_subdirectory(vdmabuf_example)
