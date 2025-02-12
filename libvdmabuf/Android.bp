@@ -1,0 +1,8 @@
+cc_library_shared {
+    name: "libvdmabuf",
+    vendor: true,
+    srcs: [
+        "vdmabuf_ioctl.c",
+        "vdmabuf_common.c",
+    ],
+}
