@@ -12,6 +12,7 @@
 
 #define VDMABUF_PRODUCER 0x1
 #define VDMABUF_CONSUMER 0x2
+#define VDMABUF_MASTER_CONSUMER 0x4
 
 typedef struct {
 	uint64_t id;

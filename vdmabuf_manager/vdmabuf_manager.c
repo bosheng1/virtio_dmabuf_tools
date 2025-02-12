@@ -541,7 +541,7 @@ int main(int argc, char **argv) {
 				continue;
 			}
 			struct virtio_vdmabuf_role role;
-			role.role = VDMABUF_CONSUMER | VDMABUF_PRODUCER;
+			role.role = VDMABUF_MASTER_CONSUMER | VDMABUF_PRODUCER;
 			ret = ioctl(dev_fd, VIRTIO_VDMABUF_IOCTL_ROLE, &role);
 			if (ret < 0) {
 				ERROR("failed to set role, ret:%d", ret);
@@ -564,7 +564,7 @@ int main(int argc, char **argv) {
 			return -1;
 		}
 		struct virtio_vdmabuf_role role;
-		role.role = VDMABUF_CONSUMER | VDMABUF_PRODUCER;
+		role.role = VDMABUF_MASTER_CONSUMER | VDMABUF_PRODUCER;
 		ret = ioctl(dev_fd, VIRTIO_VDMABUF_IOCTL_ROLE, &role);
 		if (ret < 0) {
 			ERROR("failed to set role, ret:%d", ret);
