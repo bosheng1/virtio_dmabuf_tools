@@ -42,7 +42,7 @@ int vdmabuf_open(vdmabuf_init_parameter setup);
 void vdmabuf_close(int handle);
 
 /**
- * @brief alloc buffer, called by both producer.
+ * @brief alloc buffer, called by producer.
  * @param[in]  handle  specified vdmabuf
  * @param[in]  size    size of buffer
  * @param[out]  bo_fd   dma buffer fd
@@ -51,7 +51,15 @@ void vdmabuf_close(int handle);
 int vdmabuf_alloc(int handle, size_t size, int *bo_fd);
 
 /**
- * @brief export buffer to remote, called by both producer.
+ * @brief free buffer, called by producer.
+ * @param[in]  handle  specified vdmabuf
+ * @param[in]  bo_fd   dma buffer fd
+ * @return  int  error when ret is less than zero
+ */
+void vdmabuf_free(int handle, int bo_fd);
+
+/**
+ * @brief export buffer to remote, called by producer.
  * @param[in]  handle  specified vdmabuf
  * @param[in]  bo_fd   dma buffer fd
  * @param[out]  buf_id   buffer ID of bo_fd
@@ -60,7 +68,7 @@ int vdmabuf_alloc(int handle, size_t size, int *bo_fd);
 int vdmabuf_export(int handle, int bo_fd, virtio_vdmabuf_buf_id_t *buf_id);
 
 /**
- * @brief unexport buffer when shared buffer is not used used, called by both producer.
+ * @brief unexport buffer when shared buffer is not used used, called by producer.
  * @param[in]  handle  specified vdmabuf
  * @param[in]  buf_id   buffer ID
  * @return  int  error when ret is less than zero
@@ -75,5 +83,14 @@ int vdmabuf_unexport(int handle, virtio_vdmabuf_buf_id_t *buf_id);
  * @return  int  error when ret is less than zero
  */
 int vdmabuf_import(int handle, virtio_vdmabuf_buf_id_t *buf_id, int *bo_fd);
+
+/**
+ * @brief query buffer size.
+ * @param[in]  handle  specified vdmabuf
+ * @param[in]  buf_id  buffer ID
+ * @param[out]  size   size for buffer
+ * @return  int  error when ret is less than zero
+ */
+int vdmabuf_query_size(int handle, virtio_vdmabuf_buf_id_t *buf_id, int *size);
 
 #endif

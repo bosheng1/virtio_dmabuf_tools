@@ -97,11 +97,11 @@ int ioctl_import(int fd, virtio_vdmabuf_buf_id_t *buf_id)
 	return attr.fd;
 }
 
-int ioctl_query_bufinfo(int fd, virtio_vdmabuf_buf_id_t *buf_id, int * size, int *priv_size, char *data)
+int ioctl_query_size(int fd, virtio_vdmabuf_buf_id_t *buf_id, int *size)
 {
 	struct virtio_vdmabuf_query_bufinfo attr = {0};
 	int ret = 0;
-	if (fd < 0 || !buf_id || !size || !priv_size || !data)
+	if (fd < 0 || !buf_id || !size)
 		return -1;
 	memcpy(&attr.buf_id, buf_id, sizeof(virtio_vdmabuf_buf_id_t));
 
@@ -112,18 +112,5 @@ int ioctl_query_bufinfo(int fd, virtio_vdmabuf_buf_id_t *buf_id, int * size, int
 	}
 	*size = attr.info;
 
-	attr.subcmd = VIRTIO_VDMABUF_QUERY_PRIV_INFO_SIZE;
-	ret = ioctl(fd, VIRTIO_VDMABUF_IOCTL_QUERY_BUFINFO, &attr);
-	if (ret < 0) {
-		return ret;
-	}
-	*priv_size = attr.info;
-	attr.subcmd = VIRTIO_VDMABUF_QUERY_PRIV_INFO;
-	attr.info = (unsigned long )data;
-
-	ret = ioctl(fd, VIRTIO_VDMABUF_IOCTL_QUERY_BUFINFO, &attr);
-	if (ret < 0) {
-		return ret;
-	}
 	return ret;
 }

@@ -6,3 +6,29 @@ cc_library_shared {
         "vdmabuf_common.c",
     ],
 }
+
+cc_binary {
+    name: "libvdmabuf_test_producer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    shared_libs: ["libvdmabuf"],
+    srcs: [
+        "libvdmabuf_test_producer.c",
+    ],
+    vendor: true,
+}
+
+cc_binary {
+    name: "libvdmabuf_test_consumer",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    shared_libs: ["libvdmabuf"],
+    srcs: [
+        "libvdmabuf_test_consumer.c",
+    ],
+    vendor: true,
+}

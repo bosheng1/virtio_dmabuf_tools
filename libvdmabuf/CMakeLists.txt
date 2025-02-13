@@ -11,4 +11,9 @@ set (VDMABUF_LIB_SRC
 	vdmabuf_common.c)
 add_library (vdmabuf SHARED ${VDMABUF_LIB_SRC})
 
+add_executable(libvdmabuf_test_consumer libvdmabuf_test_consumer.c)
+add_executable(libvdmabuf_test_producer libvdmabuf_test_producer.c)
+target_link_libraries(libvdmabuf_test_consumer PRIVATE vdmabuf)
+target_link_libraries(libvdmabuf_test_producer PRIVATE vdmabuf)
+
 install(TARGETS vdmabuf DESTINATION lib64)

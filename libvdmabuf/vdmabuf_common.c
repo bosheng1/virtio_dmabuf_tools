@@ -62,6 +62,7 @@ int vdmabuf_open(vdmabuf_init_parameter setup)
 			return -1;
 		}
 	}
+	return fd;
 }
 
 void vdmabuf_close(int handle)
@@ -83,6 +84,13 @@ int vdmabuf_alloc(int handle, size_t size, int *bo_fd)
                 *bo_fd = ret;
                 return 0;
         }
+}
+
+void vdmabuf_free(int handle, int bo_fd)
+{
+        if (bo_fd < 0)
+                return;
+        close(bo_fd);
 }
 
 int vdmabuf_export(int handle, int bo_fd, virtio_vdmabuf_buf_id_t *buf_id)
@@ -123,3 +131,13 @@ int vdmabuf_import(int handle, virtio_vdmabuf_buf_id_t *buf_id, int *bo_fd)
         }
 }
 
+int vdmabuf_query_size(int handle, virtio_vdmabuf_buf_id_t *buf_id, int *size)
+{
+        int ret = 0;
+
+        if (handle < 0 || !buf_id || !size) {
+                return -EINVAL;
+        }
+        ret = ioctl_query_size(handle, buf_id, size);
+        return ret;
+}

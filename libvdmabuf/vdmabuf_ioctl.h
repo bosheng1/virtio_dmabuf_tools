@@ -88,5 +88,5 @@ int ioctl_attach(int fd, char *name);
 int ioctl_export(int fd, int bo_fd, int priv_size, char *priv, virtio_vdmabuf_buf_id_t *buf_id);
 int ioctl_unexport(int fd, virtio_vdmabuf_buf_id_t *buf_id);
 int ioctl_import(int fd, virtio_vdmabuf_buf_id_t *buf_id);
-int ioctl_query_bufinfo(int fd, virtio_vdmabuf_buf_id_t *buf_id, int * size, int *priv_size, char *data);
+int ioctl_query_size(int fd, virtio_vdmabuf_buf_id_t *buf_id, int *size);
 #endif
