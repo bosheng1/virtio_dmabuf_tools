@@ -1,0 +1,19 @@
+android test bin is located at android folder, SOS test bin is located at sos folder.
+
+to add vdmabuf device to guest, should add "`add_virtual_device  13 vhost-vdmabuf`" in launch script.
+
+test steps:
+1: run consumer service
+if consumer service in SOS:
+./vdmabuf_unit_test_consumer --backend --vm $VM_Name
+if consumer service in Guest:
+./vdmabuf_unit_test_consumer
+
+2: run producer
+if producer in SOS:
+./vdmabuf_unit_test_producer --backend --vm $VM_Name
+if producer in Guest:
+./vdmabuf_unit_test_producer
+
+3: check result
+if print "TEST PASS", mean it passes.
