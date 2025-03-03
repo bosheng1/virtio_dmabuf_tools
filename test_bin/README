@@ -1,6 +1,7 @@
 android test bin is located at android folder, SOS test bin is located at sos folder.
 
-to add vdmabuf device to guest, should add "`add_virtual_device  13 vhost-vdmabuf`" in launch script.
+to add vdmabuf device to guest, should add "`add_virtual_device  13 vhost-vdmabuf size=128`" in launch script,
+size=128 means the max shared memory is 128M, whch is only used for SOS to Guest buffer sharing.
 
 Test case 1: android guest sharing buffer to sos
 1: run consumer service in sos
